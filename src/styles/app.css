@@ -1,0 +1,38 @@
+/* App Container */
+.app {
+  width: 100%;
+  background-color: var(--dark-bg);
+  color: var(--light-text);
+  position: relative;
+  overflow-x: hidden;
+}
+
+.cursor-glow {
+  position: fixed;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(0, 212, 255, 0.3), rgba(124, 58, 237, 0.1));
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 0 40px rgba(0, 212, 255, 0.2);
+  filter: blur(1px);
+}
+
+/* Hide cursor glow when hovering skills section */
+.skills:hover ~ .cursor-glow {
+  display: none !important;
+}
+
+/* Section Spacing */
+section {
+  position: relative;
+  z-index: 1;
+}
+
+@media (max-width: 768px) {
+  .app {
+    font-size: 14px;
+  }
+}
