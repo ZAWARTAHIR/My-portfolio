@@ -78,9 +78,19 @@
   transition: all 0.3s ease;
   font-size: 0.95rem;
   position: relative;
+  cursor: pointer;
 }
 
-.footer-section a::after {
+.footer-link {
+  color: var(--lighter-text);
+  text-decoration: none;
+  transition: all 0.3s ease;
+  font-size: 0.95rem;
+  position: relative;
+  cursor: pointer;
+}
+
+.footer-link::after {
   content: '';
   position: absolute;
   bottom: -2px;
@@ -91,11 +101,11 @@
   transition: width 0.3s ease;
 }
 
-.footer-section a:hover {
+.footer-link:hover {
   color: var(--primary-color);
 }
 
-.footer-section a:hover::after {
+.footer-link:hover::after {
   width: 100%;
 }
 

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link as ScrollLink } from 'react-scroll';
 import { motion } from 'framer-motion';
 import '../styles/footer.css';
 
@@ -42,10 +43,12 @@ const Footer = () => {
           >
             <h4>Quick Links</h4>
             <ul>
-              <li><a href="#hero">Home</a></li>
-              <li><a href="#about">About</a></li>
-              <li><a href="#skills">Skills</a></li>
-              <li><a href="#projects">Projects</a></li>
+              <li><ScrollLink to="hero" spy={true} smooth={true} offset={-70} duration={500} className="footer-link">Home</ScrollLink></li>
+              <li><ScrollLink to="about" spy={true} smooth={true} offset={-70} duration={500} className="footer-link">About</ScrollLink></li>
+              <li><ScrollLink to="skills" spy={true} smooth={true} offset={-70} duration={500} className="footer-link">Skills</ScrollLink></li>
+              <li><ScrollLink to="projects" spy={true} smooth={true} offset={-70} duration={500} className="footer-link">Projects</ScrollLink></li>
+              <li><ScrollLink to="contact" spy={true} smooth={true} offset={-70} duration={500} className="footer-link">Contact</ScrollLink></li>
+
             </ul>
           </motion.div>
 

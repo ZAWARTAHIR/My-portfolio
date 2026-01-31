@@ -73,13 +73,11 @@ const About = () => {
                 alt="Me"
                 className="about-photo"
                 onError={(e) => {
-                  // first fallback: try the other PNG, then fallback to SVG if that fails
                   if (!e.target.dataset.fallback) {
                     e.target.dataset.fallback = 'png1';
                     e.target.src = '/images/me-removebg-preview.png';
                   } else {
                     e.target.onerror = null;
-                    // e.target.src = '/images/me-removebg-preview.svg';
                   }
                 }}
               />

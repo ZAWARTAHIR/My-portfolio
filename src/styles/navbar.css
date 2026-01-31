@@ -131,12 +131,14 @@
     gap: 1.5rem;
     max-height: 0;
     overflow: hidden;
-    transition: max-height 0.3s ease;
+    transition: max-height 0.4s ease;
     border-bottom: 1px solid var(--border-color);
+    visibility: hidden;
   }
 
   .nav-menu.active {
-    max-height: 400px;
+    max-height: 500px;
+    visibility: visible;
   }
 
   .nav-link {
