@@ -64,9 +64,10 @@ const About = () => {
             className="about-image"
             initial={{ x: 100, opacity: 0 }}
             whileInView={{ x: 0, opacity: 1 }}
-            transition={{ duration: 0.8 }}
+            transition={{ duration: 0.9, ease: [0.175, 0.885, 0.32, 1.275] }}
             viewport={{ once: true }}
           >
+            <div className="about-image-glow"></div>
             <div className="image-placeholder">
               <img
                 src="/images/me-removebg-preview.png"

@@ -1,3 +1,9 @@
+/* ==========================================
+   EXTREME 3D GLOBAL REDESIGN
+   ========================================== */
+@import './theme.css';
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+
 :root {
   --primary-color: #00d4ff;
   --secondary-color: #7c3aed;
@@ -7,6 +13,22 @@
   --light-text: #e0e0e0;
   --lighter-text: #a0a0a0;
   --border-color: rgba(0, 212, 255, 0.1);
+  --card-bg: rgba(0, 212, 255, 0.05);
+  --card-hover-bg: rgba(0, 212, 255, 0.15);
+  --glow-color: rgba(0, 212, 255, 0.3);
+  --glow-color-secondary: rgba(124, 58, 237, 0.2);
+  --navbar-bg: rgba(10, 14, 39, 0.85);
+  --shadow-color: rgba(0, 0, 0, 0.5);
+  --input-bg: rgba(255, 255, 255, 0.05);
+  --hero-bg-gradient: linear-gradient(135deg, var(--dark-bg) 0%, rgba(10, 14, 39, 0.5) 100%);
+  --about-bg-gradient: linear-gradient(135deg, rgba(10, 14, 39, 0.5) 0%, rgba(5, 8, 16, 0.5) 100%);
+  --scrollbar-thumb: var(--primary-color);
+  --scrollbar-thumb-hover: var(--secondary-color);
+  --btn-text-active: #ffffff;
+
+  /* 3D Config */
+  --perspective: 1200px;
+  --card-rotate: 5deg;
 }
 
 * {
@@ -20,32 +42,26 @@ html {
 }
 
 body {
-  font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
+  font-family: 'Space Grotesk', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   background-color: var(--dark-bg);
   color: var(--light-text);
   overflow-x: hidden;
   line-height: 1.6;
+  transition: background-color 0.4s ease, color 0.4s ease;
 }
 
-/* Scrollbar Styling */
-::-webkit-scrollbar {
-  width: 10px;
-}
-
-::-webkit-scrollbar-track {
-  background: var(--dark-bg);
-}
-
+/* Custom Scrollbar */
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: var(--darker-bg); }
 ::-webkit-scrollbar-thumb {
-  background: var(--primary-color);
+  background: linear-gradient(180deg, var(--primary-color), var(--secondary-color));
   border-radius: 5px;
 }
+::-webkit-scrollbar-thumb:hover { background: var(--scrollbar-thumb-hover); }
 
-::-webkit-scrollbar-thumb:hover {
-  background: var(--secondary-color);
-}
-
-/* Common Utilities */
+/* ==========================================
+   SECTION TITLE REDESIGN
+   ========================================== */
 .section-title {
   font-size: 3.5rem;
   font-weight: 900;
@@ -56,6 +72,22 @@ body {
   -webkit-text-fill-color: transparent;
   background-clip: text;
   margin-bottom: 1rem;
+  position: relative;
+  display: inline-block;
+}
+
+.section-title::after {
+  content: attr(data-text);
+  position: absolute;
+  left: 4px;
+  top: 4px;
+  background: linear-gradient(135deg, var(--secondary-color), var(--accent-color));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  z-index: -1;
+  opacity: 0.25;
+  filter: blur(8px);
 }
 
 .title-underline {
@@ -64,119 +96,176 @@ body {
   background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
   border-radius: 2px;
   margin-bottom: 2rem;
+  position: relative;
+  overflow: hidden;
 }
 
-/* Cursor Glow Effect */
-.cursor-glow {
-  position: fixed;
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(0, 212, 255, 0.3), rgba(124, 58, 237, 0.1));
-  pointer-events: none;
-  z-index: 9999;
-  transform: translate(-50%, -50%);
-  box-shadow: 0 0 40px rgba(0, 212, 255, 0.2);
+.title-underline::after {
+  content: '';
+  position: absolute;
+  top: 0; left: -100%;
+  width: 100%; height: 100%;
+  background: linear-gradient(90deg, transparent, #fff, transparent);
+  animation: shimmer 2.5s infinite;
 }
 
-/* Button Styles */
+/* ==========================================
+   BUTTON STYLES REDESIGN
+   ========================================== */
 .btn {
-  padding: 12px 30px;
+  padding: 14px 36px;
   border: none;
   border-radius: 50px;
   font-size: 1rem;
-  font-weight: 600;
+  font-weight: 700;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   text-transform: uppercase;
-  letter-spacing: 1px;
+  letter-spacing: 2px;
+  position: relative;
+  overflow: hidden;
+  font-family: inherit;
 }
+
+.btn::before {
+  content: '';
+  position: absolute;
+  top: 0; left: -100%;
+  width: 100%; height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  transition: left 0.4s ease;
+}
+
+.btn:hover::before { left: 100%; }
 
 .btn-primary {
   background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
   color: #fff;
-  box-shadow: 0 10px 30px rgba(0, 212, 255, 0.3);
+  box-shadow: 0 10px 30px var(--glow-color), 0 0 0 1px rgba(255,255,255,0.1) inset;
 }
 
 .btn-primary:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 15px 40px rgba(0, 212, 255, 0.4);
+  transform: translateY(-5px) scale(1.03);
+  box-shadow: 0 20px 50px var(--glow-color), 0 0 60px var(--glow-color-secondary);
 }
 
 .btn-secondary {
   background: transparent;
   color: var(--primary-color);
   border: 2px solid var(--primary-color);
+  backdrop-filter: blur(10px);
 }
 
 .btn-secondary:hover {
   background: var(--primary-color);
   color: var(--dark-bg);
+  transform: translateY(-5px) scale(1.03);
+  box-shadow: 0 15px 40px var(--glow-color);
 }
 
-/* Animations */
+/* ==========================================
+   CURSOR GLOW
+   ========================================== */
+.cursor-glow {
+  position: fixed;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--glow-color), var(--glow-color-secondary));
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 0 40px var(--glow-color);
+  filter: blur(1px);
+  mix-blend-mode: screen;
+}
+
+/* ==========================================
+   KEYFRAME ANIMATIONS
+   ========================================== */
 @keyframes float {
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(10px); }
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  33% { transform: translateY(-15px) rotate(1deg); }
+  66% { transform: translateY(-8px) rotate(-1deg); }
+}
+
+@keyframes float3D {
+  0%, 100% { transform: translateY(0) rotateX(0deg) rotateY(0deg); }
+  25% { transform: translateY(-20px) rotateX(5deg) rotateY(5deg); }
+  50% { transform: translateY(-10px) rotateX(-3deg) rotateY(-3deg); }
+  75% { transform: translateY(-18px) rotateX(4deg) rotateY(-4deg); }
 }
 
 @keyframes glow {
-  0%, 100% { box-shadow: 0 0 20px rgba(0, 212, 255, 0.5); }
-  50% { box-shadow: 0 0 40px rgba(0, 212, 255, 0.8); }
+  0%, 100% { box-shadow: 0 0 20px var(--glow-color); }
+  50% { box-shadow: 0 0 60px var(--glow-color), 0 0 100px var(--glow-color-secondary); }
+}
+
+@keyframes shimmer {
+  0% { left: -100%; }
+  100% { left: 200%; }
+}
+
+@keyframes rotateOrb {
+  from { transform: rotate(0deg) translateX(150px) rotate(0deg); }
+  to { transform: rotate(360deg) translateX(150px) rotate(-360deg); }
+}
+
+@keyframes pulse3D {
+  0%, 100% { transform: scale(1) rotateY(0deg); box-shadow: 0 5px 20px var(--glow-color); }
+  50% { transform: scale(1.02) rotateY(5deg); box-shadow: 0 20px 60px var(--glow-color), 0 0 100px var(--glow-color-secondary); }
+}
+
+@keyframes scanLine {
+  0% { top: -10%; }
+  100% { top: 110%; }
+}
+
+@keyframes gridMove {
+  0% { transform: perspective(500px) rotateX(45deg) translateY(0); }
+  100% { transform: perspective(500px) rotateX(45deg) translateY(60px); }
 }
 
 @keyframes slideInLeft {
-  from {
-    opacity: 0;
-    transform: translateX(-100px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
+  from { opacity: 0; transform: translateX(-100px) rotateY(-30deg); }
+  to { opacity: 1; transform: translateX(0) rotateY(0deg); }
 }
 
 @keyframes slideInRight {
-  from {
-    opacity: 0;
-    transform: translateX(100px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
+  from { opacity: 0; transform: translateX(100px) rotateY(30deg); }
+  to { opacity: 1; transform: translateX(0) rotateY(0deg); }
 }
 
 @keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; transform: translateY(40px) rotateX(10deg); }
+  to { opacity: 1; transform: translateY(0) rotateX(0deg); }
 }
 
-/* Responsive */
-@media (max-width: 768px) {
-  .section-title {
-    font-size: 2.5rem;
-  }
+@keyframes borderDance {
+  0%, 100% { border-color: var(--primary-color); }
+  50% { border-color: var(--secondary-color); }
+}
 
-  .btn {
-    padding: 10px 20px;
-    font-size: 0.9rem;
-  }
+@keyframes textGlitch {
+  0% { clip-path: inset(0 0 98% 0); transform: translate(-2px, 0); }
+  10% { clip-path: inset(10% 0 85% 0); transform: translate(2px, 0); }
+  20% { clip-path: inset(25% 0 60% 0); transform: translate(-2px, 0); }
+  30% { clip-path: inset(50% 0 35% 0); transform: translate(2px, 0); }
+  40% { clip-path: inset(70% 0 15% 0); transform: translate(-2px, 0); }
+  50% { clip-path: inset(85% 0 0% 0); transform: translate(2px, 0); }
+  60% { clip-path: inset(0 0 0 0); transform: translate(0); }
+  100% { clip-path: inset(0 0 0 0); transform: translate(0); }
+}
+
+/* ==========================================
+   RESPONSIVE
+   ========================================== */
+@media (max-width: 768px) {
+  .section-title { font-size: 2.5rem; }
+  .btn { padding: 10px 24px; font-size: 0.9rem; }
 }
 
 @media (max-width: 480px) {
-  .section-title {
-    font-size: 2rem;
-    letter-spacing: 2px;
-  }
-
-  .cursor-glow {
-    display: none;
-  }
+  .section-title { font-size: 2rem; letter-spacing: 2px; }
+  .cursor-glow { display: none; }
 }

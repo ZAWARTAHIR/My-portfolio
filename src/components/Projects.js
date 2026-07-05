@@ -12,63 +12,80 @@ const Projects = () => {
   const projects = [
     {
       id: 1,
-      title: 'E-Commerce Platform',
-      category: 'fullstack',
-      description: 'A modern e-commerce platform with React frontend and Node.js backend',
-      technologies: ['React', 'Node.js', 'MongoDB', 'Stripe'],
-      image: '🛍️',
+      title: 'Mehfil — Event Platform',
+      categories: ['fullstack', 'backend'],
+      description: 'A full-featured event management platform for UCP, with event listings, registrations, and an admin dashboard.',
+      technologies: ['React', 'Node.js', 'MongoDB', 'Vercel'],
+      image: '/images/mehfil fulstack.png',
       featured: true,
+      link: 'https://mehfil-ucp.vercel.app/',
     },
     {
       id: 2,
-      title: 'Social Media Dashboard',
-      category: 'frontend',
-      description: 'Interactive dashboard for managing multiple social media accounts',
-      technologies: ['React', 'Chart.js', 'Tailwind CSS'],
-      image: '📊',
+      title: 'Ramzan Calendar',
+      categories: ['fullstack', 'backend'],
+      description: 'An interactive Ramzan calendar with Sehri & Iftar timings, prayer schedules, and a clean modern UI.',
+      technologies: ['React', 'Prayer Times API', 'CSS3', 'Vercel'],
+      image: '/images/ramzan fullstack.png',
       featured: true,
+      link: 'https://ramzan-calendar.vercel.app/',
     },
     {
       id: 3,
-      title: 'AI Chat Application',
-      category: 'fullstack',
-      description: 'Real-time chat application with AI-powered responses',
-      technologies: ['React', 'Python', 'WebSockets', 'OpenAI API'],
-      image: '💬',
+      title: 'UCP CSS Society',
+      categories: ['fullstack', 'automation', 'backend'],
+      description: 'Official website for the UCP Computer Science Society with a built-in chatbot, menu images, events, and society activities.',
+      technologies: ['HTML', 'CSS', 'JavaScript', 'Chatbot', 'Netlify'],
+      image: '/images/ucpcs fullstack.png',
       featured: true,
+      link: 'https://ucpcssociety.netlify.app/',
     },
     {
       id: 4,
-      title: 'Task Management App',
-      category: 'frontend',
-      description: 'Collaborative task management system with real-time updates',
-      technologies: ['Vue.js', 'Firebase', 'Material Design'],
-      image: '✓',
-      featured: false,
+      title: 'Dextra Bit',
+      categories: ['fullstack', 'automation', 'backend'],
+      description: 'A smart automation-powered full-stack platform built to streamline digital workflows and enhance productivity.',
+      technologies: ['React', 'Node.js', 'Automation', 'Vercel'],
+      image: '/images/dextrabit fulstack.png',
+      featured: true,
+      link: 'https://dextra-bit.vercel.app/',
     },
     {
       id: 5,
-      title: 'API Gateway Service',
-      category: 'backend',
-      description: 'Scalable API gateway with authentication and rate limiting',
-      technologies: ['Node.js', 'Express', 'Redis', 'Docker'],
-      image: '🔌',
-      featured: false,
+      title: 'Tap Counter',
+      categories: ['frontend'],
+      description: 'A clean, interactive tap counter application with state saving and custom settings.',
+      technologies: ['React', 'CSS3', 'Local Storage', 'Vercel'],
+      image: '/images/Tap counter.png',
+      featured: true,
+      link: 'https://tapcounter-pearl.vercel.app/',
     },
     {
       id: 6,
-      title: 'Weather Application',
-      category: 'frontend',
-      description: 'Beautiful weather app with detailed forecasts and animations',
-      technologies: ['React', 'Weather API', 'Framer Motion'],
-      image: '🌦️',
-      featured: false,
+      title: 'UCP Gameon',
+      categories: ['fullstack', 'backend'],
+      description: 'A sports event registration and gaming management platform for UCP with tournament brackets and live updates.',
+      technologies: ['React', 'Node.js', 'MongoDB', 'Express', 'Vercel'],
+      image: '/images/ucpgameon.png',
+      featured: true,
+      link: 'https://ucpgameon.vercel.app/',
+    },
+    {
+      id: 7,
+      title: 'Flappy Bird Game',
+      categories: ['frontend'],
+      description: 'A classic Flappy Bird arcade game built on the web with interactive physics, score tracking, and smooth animations.',
+      technologies: ['HTML5 Canvas', 'CSS3', 'JavaScript', 'Netlify'],
+      image: '/images/birdflappy.png',
+      featured: true,
+      link: 'https://birdflapy.netlify.app/',
     },
   ];
 
-  const filteredProjects = selectedCategory === 'all' 
-    ? projects 
-    : projects.filter(p => p.category === selectedCategory);
+  const filteredProjects = selectedCategory === 'all'
+    ? projects
+    : projects.filter(p => p.categories.includes(selectedCategory));
+
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -116,7 +133,7 @@ const Projects = () => {
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            {['all', 'frontend', 'backend', 'fullstack'].map((category) => (
+            {['all', 'frontend', 'backend', 'fullstack', 'automation'].map((category) => (
               <motion.button
                 key={category}
                 className={`filter-btn ${selectedCategory === category ? 'active' : ''}`}
@@ -146,7 +163,19 @@ const Projects = () => {
                 transition={{ delay: index * 0.1 }} // Stagger individual cards
               >
                 <div className="project-image">
-                  <span className="image-emoji">{project.image}</span>
+                  {project.image ? (
+                    <img
+                      src={
+                        project.id === 3 && selectedCategory === 'automation'
+                          ? '/images/ucpcs automation.png'
+                          : project.image
+                      }
+                      alt={project.title}
+                      className="project-img"
+                    />
+                  ) : (
+                    <span className="image-emoji">🗂️</span>
+                  )}
                 </div>
 
                 <div className="project-content">
@@ -162,9 +191,20 @@ const Projects = () => {
                   </div>
 
                   <div className="project-footer">
-                    <button className="project-link">
-                      View Project →
-                    </button>
+                    {project.link ? (
+                      <a
+                        href={project.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="project-link"
+                      >
+                        View Project →
+                      </a>
+                    ) : (
+                      <button className="project-link" disabled style={{ opacity: 0.45, cursor: 'not-allowed' }}>
+                        Coming Soon
+                      </button>
+                    )}
                   </div>
                 </div>
               </motion.div>

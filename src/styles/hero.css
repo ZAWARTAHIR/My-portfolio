@@ -1,4 +1,6 @@
-/* Hero Section */
+/* ==========================================
+   HERO SECTION - EXTREME 3D & COVERFLOW CAROUSEL
+   ========================================== */
 .hero {
   min-height: 100vh;
   display: flex;
@@ -7,62 +9,117 @@
   position: relative;
   overflow: hidden;
   padding-top: 80px;
-  background: linear-gradient(135deg, var(--dark-bg) 0%, rgba(10, 14, 39, 0.5) 100%);
+  background: var(--hero-bg-gradient);
+  transition: background 0.4s ease;
+  perspective: 1200px;
 }
 
-/* Hero Background */
+/* Animated Grid Floor */
+.hero::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 40%;
+  background-image: 
+    linear-gradient(var(--border-color) 1px, transparent 1px),
+    linear-gradient(90deg, var(--border-color) 1px, transparent 1px);
+  background-size: 60px 60px;
+  transform: perspective(600px) rotateX(60deg) translateY(30%);
+  transform-origin: bottom;
+  opacity: 0.25;
+  animation: gridMove 4s linear infinite;
+  mask-image: linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 100%);
+}
+
+/* Hero Background Orbs */
 .hero-background {
   position: absolute;
   inset: 0;
   z-index: 0;
+  overflow: hidden;
 }
 
 .gradient-orb {
   position: absolute;
   border-radius: 50%;
-  filter: blur(80px);
-  opacity: 0.3;
-  animation: float 8s ease-in-out infinite;
+  filter: blur(60px);
+  opacity: 0.4;
 }
 
 .orb-1 {
-  width: 400px;
-  height: 400px;
-  background: radial-gradient(circle, rgba(0, 212, 255, 0.5), transparent);
-  top: -100px;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, var(--glow-color), transparent 70%);
+  top: -150px;
   right: -100px;
-  animation-delay: 0s;
+  animation: float 10s ease-in-out infinite;
 }
 
 .orb-2 {
-  width: 300px;
-  height: 300px;
-  background: radial-gradient(circle, rgba(124, 58, 237, 0.5), transparent);
-  bottom: 50px;
-  left: 10%;
-  animation-delay: 2s;
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, var(--glow-color-secondary), transparent 70%);
+  bottom: 100px;
+  left: -80px;
+  animation: float 12s ease-in-out infinite 2s;
 }
 
 .orb-3 {
-  width: 350px;
-  height: 350px;
-  background: radial-gradient(circle, rgba(255, 107, 107, 0.3), transparent);
-  top: 50%;
-  right: 5%;
-  animation-delay: 4s;
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, rgba(255,107,107,0.2), transparent 70%);
+  top: 40%;
+  right: 10%;
+  animation: float 8s ease-in-out infinite 4s;
 }
 
-/* Hero Content */
+/* Particles Layer */
+.hero-particles {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.particle {
+  position: absolute;
+  border-radius: 50%;
+  opacity: 0;
+  animation: particle-float linear infinite;
+}
+
+@keyframes particle-float {
+  0% { transform: translateY(100vh) scale(0); opacity: 0; }
+  10% { opacity: 0.6; }
+  90% { opacity: 0.3; }
+  100% { transform: translateY(-100px) scale(1.5); opacity: 0; }
+}
+
+/* Hero Content Grid */
 .hero-content {
   position: relative;
-  z-index: 1;
-  text-align: center;
-  max-width: 900px;
+  z-index: 2;
+  width: 100%;
+  max-width: 1350px;
   padding: 0 2rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3.5rem;
+  align-items: center;
+}
+
+/* Left Column Styling */
+.hero-left-column {
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }
 
 .hero-text-group {
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem;
 }
 
 .hero-title {
@@ -71,240 +128,259 @@
   text-transform: uppercase;
   letter-spacing: 4px;
   line-height: 1.1;
-  margin-bottom: 1rem;
-  text-shadow: 0 10px 30px rgba(0, 212, 255, 0.2);
+  font-family: 'Space Grotesk', sans-serif;
+  color: var(--light-text);
 }
 
 .creative {
-  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+  background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 50%, var(--accent-color) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
   display: block;
-  animation: slideInLeft 0.8s ease-out;
+  animation: slideInLeft 0.9s cubic-bezier(0.175, 0.885, 0.32, 1.275) both;
+  position: relative;
+  filter: drop-shadow(0 0 30px var(--glow-color));
 }
 
 .hero-title.subtitle {
-  font-size: 3rem;
+  font-size: 2.2rem;
   color: var(--lighter-text);
-  animation: slideInRight 0.8s ease-out;
+  animation: slideInLeft 0.9s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.1s both;
+  font-weight: 500;
+  letter-spacing: 3px;
+  margin-top: 0.5rem;
 }
 
 .hero-description {
-  font-size: 1.3rem;
+  font-size: 1.1rem;
   color: var(--lighter-text);
   margin-bottom: 2.5rem;
   line-height: 1.8;
-  animation: fadeInUp 0.8s ease-out 0.2s both;
+  animation: slideInLeft 0.9s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.2s both;
+  max-width: 580px;
 }
 
-/* Hero Buttons */
 .hero-buttons {
   display: flex;
-  gap: 1.5rem;
-  justify-content: center;
+  gap: 1.2rem;
+  justify-content: flex-start;
   flex-wrap: wrap;
-  animation: fadeInUp 0.8s ease-out 0.4s both;
+  animation: slideInLeft 0.9s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.3s both;
 }
 
 .hero-buttons .btn {
-  padding: 14px 35px;
-  font-size: 1.05rem;
+  padding: 14px 34px;
+  font-size: 0.95rem;
 }
 
-/* Scroll Indicator */
-.scroll-indicator {
-  position: absolute;
-  bottom: 30px;
-  left: 50%;
-  transform: translateX(-50%);
+/* ==========================================
+   3D COVERFLOW SLIDER (Right Column)
+   ========================================== */
+.hero-right-column {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 520px;
+  width: 100%;
+}
+
+.coverflow-container {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1rem;
-  animation: fadeInUp 0.8s ease-out 0.6s both;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
 }
 
-.scroll-indicator span {
-  font-size: 0.85rem;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  color: var(--lighter-text);
-}
-
-.scroll-icon {
-  width: 20px;
-  height: 35px;
-  border: 2px solid var(--primary-color);
-  border-radius: 10px;
+/* The track — same as blogs-slider-track */
+.coverflow-track {
   position: relative;
-  animation: glow 2s ease-in-out infinite;
+  width: 100%;
+  height: 450px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  perspective: 1200px;
+  transform-style: preserve-3d;
 }
 
-.scroll-dot {
-  width: 3px;
-  height: 3px;
+/* Coverflow Card — same mechanics as blogs-slider-card */
+.coverflow-card {
+  position: absolute;
+  width: 270px;
+  height: 380px;
+  background: var(--darker-bg);
+  border: 1.5px solid var(--border-color);
+  border-radius: 18px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 15px 45px rgba(0, 0, 0, 0.45);
+  /* Pure CSS transition — same as BlogsSliderReusable */
+  transition: transform 0.5s cubic-bezier(0.25, 0.8, 0.25, 1), opacity 0.5s ease;
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+  cursor: pointer;
+}
+
+.coverflow-card.active {
+  box-shadow: 0 0 40px var(--glow-color), 0 20px 50px rgba(0, 0, 0, 0.65);
+  border-color: var(--primary-color);
+}
+
+/* Image area fills most of the card */
+.card-img-area {
+  flex: 1;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.15);
+}
+
+.card-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  transition: transform 0.5s ease;
+}
+
+.coverflow-card.active:hover .card-photo {
+  transform: scale(1.05);
+}
+
+/* Title label at bottom */
+.card-label {
+  flex-shrink: 0;
+  padding: 0.85rem 1rem;
+  background: rgba(0, 0, 0, 0.2);
+  border-top: 1px solid var(--border-color);
+  text-align: center;
+}
+
+.card-label span {
+  font-size: 0.9rem;
+  font-weight: 800;
+  color: var(--light-text);
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  font-family: 'Space Grotesk', sans-serif;
+}
+
+/* Navigation Arrow Controls */
+.nav-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: var(--navbar-bg);
+  border: 1.5px solid var(--border-color);
+  color: var(--light-text);
+  font-size: 1.8rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 30;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  backdrop-filter: blur(10px);
+  line-height: 1;
+}
+
+.nav-arrow:hover {
   background: var(--primary-color);
+  color: #fff;
+  border-color: transparent;
+  box-shadow: 0 0 20px var(--glow-color);
+  transform: translateY(-50%) scale(1.08);
+}
+
+.prev-arrow { left: 0; }
+.next-arrow { right: 0; }
+
+/* Pagination Dots */
+.coverflow-dots {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 1.2rem;
+  z-index: 20;
+}
+
+.coverflow-dot {
+  width: 8px;
+  height: 8px;
   border-radius: 50%;
-  position: absolute;
-  left: 50%;
-  top: 8px;
-  transform: translateX(-50%);
-  animation: bounce 2s ease-in-out infinite;
+  background: rgba(255, 255, 255, 0.25);
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  transition: all 0.3s ease;
 }
 
-@keyframes bounce {
-  0%, 100% {
-    top: 8px;
-  }
-  50% {
-    top: 20px;
-  }
+.coverflow-dot.active {
+  background: var(--primary-color);
+  width: 22px;
+  border-radius: 4px;
+  box-shadow: 0 0 10px var(--primary-color);
 }
 
-/* Floating Shapes */
-.floating-shapes {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 300px;
-  z-index: 0;
-}
-
-.shape {
-  position: absolute;
-  border: 2px solid var(--primary-color);
-  opacity: 0.1;
-  animation: float 6s ease-in-out infinite;
-}
-
-.shape-1 {
-  width: 100px;
-  height: 100px;
-  bottom: 50px;
-  left: 10%;
-  border-radius: 50%;
-  animation-delay: 0s;
-}
-
-.shape-2 {
-  width: 80px;
-  height: 80px;
-  bottom: 100px;
-  right: 15%;
-  border-radius: 20%;
-  animation-delay: 1s;
-}
-
-.shape-3 {
-  width: 120px;
-  height: 50px;
-  bottom: 30px;
-  right: 5%;
-  border-radius: 50%;
-  animation-delay: 2s;
-}
-
-/* Responsive */
+/* ==========================================
+   RESPONSIVE DESIGN
+   ========================================== */
 @media (max-width: 1024px) {
-  .hero-title {
-    font-size: 3.5rem;
+  .hero-content {
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
   }
-
-  .hero-title.subtitle {
-    font-size: 2.5rem;
-  }
-
-  .orb-1 {
-    width: 300px;
-    height: 300px;
-  }
-
-  .orb-2 {
-    width: 200px;
-    height: 200px;
-  }
-
-  .orb-3 {
-    width: 250px;
-    height: 250px;
-  }
+  .hero-title { font-size: 3.8rem; }
+  .hero-title.subtitle { font-size: 1.8rem; }
+  .coverflow-card { width: 240px; height: 340px; }
 }
 
 @media (max-width: 768px) {
   .hero {
-    min-height: 90vh;
-    padding-top: 60px;
+    min-height: auto;
+    padding: 100px 1.5rem 60px;
   }
-
-  .hero-title {
-    font-size: 2.5rem;
-    letter-spacing: 2px;
+  .hero-content {
+    grid-template-columns: 1fr;
+    gap: 3rem;
   }
-
-  .hero-title.subtitle {
-    font-size: 1.8rem;
+  .hero-left-column {
+    align-items: center;
+    text-align: center;
   }
-
+  .hero-title { font-size: 3.4rem; letter-spacing: 2px; }
+  .hero-title.subtitle { font-size: 1.5rem; }
   .hero-description {
-    font-size: 1.1rem;
-    margin-bottom: 1.5rem;
+    font-size: 1rem;
+    margin-bottom: 2rem;
+    margin-left: auto;
+    margin-right: auto;
   }
-
-  .hero-buttons {
-    gap: 1rem;
-  }
-
-  .hero-buttons .btn {
-    padding: 12px 25px;
-    font-size: 0.9rem;
-  }
-
-  .gradient-orb {
-    filter: blur(60px);
-  }
+  .hero-buttons { justify-content: center; }
+  .hero-right-column { height: 440px; order: 2; }
+  .coverflow-track { height: 400px; }
+  .coverflow-card { width: 220px; height: 320px; }
+  .prev-arrow { left: 5px; }
+  .next-arrow { right: 5px; }
 }
 
 @media (max-width: 480px) {
-  .hero {
-    min-height: 85vh;
-    padding: 60px 1rem 0;
-  }
-
-  .hero-content {
-    padding: 0 1rem;
-  }
-
-  .hero-title {
-    font-size: 2rem;
-    letter-spacing: 1px;
-    margin-bottom: 0.5rem;
-  }
-
-  .hero-title.subtitle {
-    font-size: 1.3rem;
-  }
-
-  .hero-description {
-    font-size: 1rem;
-    margin-bottom: 1.5rem;
-  }
-
-  .hero-buttons {
-    flex-direction: column;
-    gap: 0.75rem;
-  }
-
-  .hero-buttons .btn {
-    width: 100%;
-  }
-
-  .floating-shapes {
-    height: 150px;
-  }
-
-  .shape {
-    opacity: 0.05;
-  }
+  .hero { padding-top: 90px; }
+  .hero-title { font-size: 2.6rem; }
+  .hero-title.subtitle { font-size: 1.2rem; }
+  .coverflow-card { width: 190px; height: 280px; }
+  .card-label span { font-size: 0.78rem; }
+  .hero-buttons { flex-direction: column; width: 100%; }
+  .hero-buttons .btn { width: 100%; }
+  .prev-arrow { left: 0; width: 36px; height: 36px; font-size: 1.4rem; }
+  .next-arrow { right: 0; width: 36px; height: 36px; font-size: 1.4rem; }
 }
+

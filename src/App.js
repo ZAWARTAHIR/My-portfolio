@@ -11,6 +11,9 @@ import './styles/app.css';
 function App() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [isOverSkills, setIsOverSkills] = useState(false);
+  const [theme, setTheme] = useState(() => {
+    return localStorage.getItem('portfolio-theme') || 'default';
+  });
 
   useEffect(() => {
     const handleMouseMove = (e) => {
@@ -20,6 +23,11 @@ function App() {
     window.addEventListener('mousemove', handleMouseMove);
     return () => window.removeEventListener('mousemove', handleMouseMove);
   }, []);
+
+  useEffect(() => {
+    document.body.className = `theme-${theme}`;
+    localStorage.setItem('portfolio-theme', theme);
+  }, [theme]);
 
   return (
     <div className="app">
@@ -32,7 +40,7 @@ function App() {
           pointerEvents: 'none',
         }}
       />
-      <Navbar />
+      <Navbar theme={theme} setTheme={setTheme} />
       <Hero />
       <About />
       <div 

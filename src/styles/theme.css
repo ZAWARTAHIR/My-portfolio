@@ -1,0 +1,79 @@
+/* Theme definitions for Portfolio */
+
+/* 1. Default (Dark Neon) Theme */
+.theme-default {
+  --primary-color: #00d4ff;
+  --secondary-color: #7c3aed;
+  --accent-color: #ff6b6b;
+  --dark-bg: #0a0e27;
+  --darker-bg: #050810;
+  --light-text: #e0e0e0;
+  --lighter-text: #a0a0a0;
+  --border-color: rgba(0, 212, 255, 0.1);
+  --card-bg: rgba(0, 212, 255, 0.05);
+  --card-hover-bg: rgba(0, 212, 255, 0.15);
+  --glow-color: rgba(0, 212, 255, 0.3);
+  --glow-color-secondary: rgba(124, 58, 237, 0.2);
+  --navbar-bg: rgba(10, 14, 39, 0.85);
+  --shadow-color: rgba(0, 0, 0, 0.5);
+  --input-bg: rgba(255, 255, 255, 0.05);
+  
+  --hero-bg-gradient: linear-gradient(135deg, var(--dark-bg) 0%, rgba(10, 14, 39, 0.5) 100%);
+  --about-bg-gradient: linear-gradient(135deg, rgba(10, 14, 39, 0.5) 0%, rgba(5, 8, 16, 0.5) 100%);
+  
+  --scrollbar-thumb: var(--primary-color);
+  --scrollbar-thumb-hover: var(--secondary-color);
+  --btn-text-active: #ffffff;
+}
+
+/* 2. Light (Professional Slate) Theme */
+.theme-light {
+  --primary-color: #2563eb; /* Royal Indigo */
+  --secondary-color: #7c3aed; /* Violet */
+  --accent-color: #f43f5e; /* Rose */
+  --dark-bg: #f8fafc; /* Slate 50 */
+  --darker-bg: #e2e8f0; /* Slate 200 */
+  --light-text: #0f172a; /* Slate 900 */
+  --lighter-text: #475569; /* Slate 600 */
+  --border-color: rgba(37, 99, 235, 0.15);
+  --card-bg: #ffffff; /* Card Background */
+  --card-hover-bg: rgba(37, 99, 235, 0.06);
+  --glow-color: rgba(37, 99, 235, 0.15);
+  --glow-color-secondary: rgba(124, 58, 237, 0.1);
+  --navbar-bg: rgba(248, 250, 252, 0.85);
+  --shadow-color: rgba(15, 23, 42, 0.08);
+  --input-bg: #ffffff;
+  
+  --hero-bg-gradient: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+  --about-bg-gradient: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
+  
+  --scrollbar-thumb: #cbd5e1; /* Slate 300 */
+  --scrollbar-thumb-hover: #94a3b8; /* Slate 400 */
+  --btn-text-active: #ffffff;
+}
+
+/* 3. Cyberpunk Theme */
+.theme-cyberpunk {
+  --primary-color: #fcee0a; /* Cyberpunk Yellow */
+  --secondary-color: #00f0ff; /* Cyberpunk Cyan */
+  --accent-color: #ff0055; /* Neon Pink/Red */
+  --dark-bg: #121214; /* Charcoal Dark */
+  --darker-bg: #09090b; /* Pitch Black */
+  --light-text: #fcee0a; /* Yellow Main Text */
+  --lighter-text: #00f0ff; /* Cyan Accent/Subtext */
+  --border-color: rgba(252, 238, 10, 0.3);
+  --card-bg: rgba(18, 18, 20, 0.85);
+  --card-hover-bg: rgba(252, 238, 10, 0.08);
+  --glow-color: rgba(252, 238, 10, 0.35);
+  --glow-color-secondary: rgba(0, 240, 255, 0.25);
+  --navbar-bg: rgba(9, 9, 11, 0.95);
+  --shadow-color: rgba(0, 0, 0, 0.7);
+  --input-bg: rgba(0, 0, 0, 0.4);
+  
+  --hero-bg-gradient: linear-gradient(135deg, var(--dark-bg) 0%, rgba(9, 9, 11, 0.8) 100%);
+  --about-bg-gradient: linear-gradient(135deg, rgba(9, 9, 11, 0.8) 0%, rgba(5, 5, 7, 0.9) 100%);
+  
+  --scrollbar-thumb: var(--primary-color);
+  --scrollbar-thumb-hover: var(--secondary-color);
+  --btn-text-active: #09090b;
+}

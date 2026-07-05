@@ -1,10 +1,28 @@
-/* About Section */
+/* ==========================================
+   ABOUT SECTION — 3D CARDS
+   ========================================== */
 .about {
   min-height: 100vh;
-  padding: 100px 2rem;
-  background: linear-gradient(135deg, rgba(10, 14, 39, 0.5) 0%, rgba(5, 8, 16, 0.5) 100%);
+  padding: 120px 2rem;
+  background: var(--about-bg-gradient);
   position: relative;
   overflow: hidden;
+  transition: background 0.4s ease;
+}
+
+/* Animated background mesh */
+.about::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(
+    circle at 1px 1px,
+    var(--border-color) 1px,
+    transparent 0
+  );
+  background-size: 40px 40px;
+  opacity: 0.4;
+  pointer-events: none;
 }
 
 .about-container {
@@ -12,95 +30,155 @@
   margin: 0 auto;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 4rem;
+  gap: 5rem;
   align-items: center;
+  position: relative;
+  z-index: 1;
 }
 
 /* About Content */
-.about-content {
-  z-index: 2;
-}
+.about-content { z-index: 2; }
 
 .about-text {
   font-size: 1.1rem;
   color: var(--lighter-text);
-  line-height: 1.9;
-  margin-bottom: 2rem;
+  line-height: 2;
+  margin-bottom: 1.8rem;
   transition: color 0.3s ease;
+  border-left: 2px solid transparent;
+  padding-left: 0;
+  transition: all 0.3s ease;
 }
 
 .about-text:hover {
   color: var(--light-text);
+  border-left-color: var(--primary-color);
+  padding-left: 1rem;
 }
 
-/* Stats */
+/* 3D Stats Cards */
 .about-stats {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 2rem;
+  gap: 1.5rem;
   margin-top: 3rem;
+  perspective: 1000px;
 }
 
 .stat-item {
-  padding: 2rem;
-  background: rgba(0, 212, 255, 0.05);
+  padding: 2rem 1.5rem;
+  background: var(--card-bg);
   border: 1px solid var(--border-color);
-  border-radius: 10px;
+  border-radius: 16px;
   text-align: center;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   position: relative;
   overflow: hidden;
+  transform-style: preserve-3d;
+  backdrop-filter: blur(20px);
 }
 
 .stat-item::before {
   content: '';
   position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(0, 212, 255, 0.1), transparent);
-  transition: left 0.5s ease;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+  transform: scaleX(0);
+  transition: transform 0.4s ease;
 }
 
-.stat-item:hover::before {
-  left: 100%;
+.stat-item::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 120%, var(--glow-color), transparent 60%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
 }
+
+.stat-item:hover {
+  transform: translateY(-12px) rotateX(8deg) rotateY(-4deg) scale(1.04);
+  box-shadow: 
+    0 30px 60px var(--shadow-color),
+    0 0 40px var(--glow-color),
+    0 0 80px var(--glow-color-secondary);
+  border-color: var(--primary-color);
+}
+
+.stat-item:hover::before { transform: scaleX(1); }
+.stat-item:hover::after { opacity: 1; }
 
 .stat-item h3 {
-  font-size: 2.5rem;
+  font-size: 2.8rem;
   color: var(--primary-color);
   margin-bottom: 0.5rem;
   font-weight: 900;
+  font-family: 'Space Grotesk', sans-serif;
+  position: relative;
+  z-index: 1;
+  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 .stat-item p {
-  font-size: 0.95rem;
+  font-size: 0.8rem;
   color: var(--lighter-text);
   text-transform: uppercase;
-  letter-spacing: 1px;
+  letter-spacing: 2px;
+  position: relative;
+  z-index: 1;
+  font-weight: 600;
 }
 
-/* About Image */
+/* About Image — 3D floating frame */
 .about-image {
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 0; /* ensure heading stays above when overlap happens */
+  z-index: 2;
   position: relative;
-  transform: translateY(8px); /* offset downward so animation doesn't cross heading */
+  perspective: 1000px;
 }
 
 .image-placeholder {
-  width: 360px; /* increased size */
-  height: 360px; /* increased size */
+  width: 380px;
+  height: 380px;
   position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
-  animation: float 3.5s ease-in-out infinite; /* slightly faster, smaller amplitude in keyframes */
-  will-change: transform;
+  animation: float3D 6s ease-in-out infinite;
+  transform-style: preserve-3d;
+}
+
+/* Rotating ring around avatar */
+.image-placeholder::before {
+  content: '';
+  position: absolute;
+  inset: -20px;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  border-top-color: var(--primary-color);
+  border-bottom-color: var(--secondary-color);
+  animation: spin 4s linear infinite;
+}
+
+.image-placeholder::after {
+  content: '';
+  position: absolute;
+  inset: -36px;
+  border-radius: 50%;
+  border: 1px dashed var(--border-color);
+  animation: spin 8s linear infinite reverse;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
 }
 
 .image-placeholder svg,
@@ -110,138 +188,83 @@
 }
 
 .image-placeholder svg {
-  filter: drop-shadow(0 0 40px rgba(0, 212, 255, 0.3));
+  filter: drop-shadow(0 0 40px var(--glow-color));
 }
 
 .image-placeholder .about-photo {
   object-fit: cover;
   border-radius: 50%;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35), 0 0 40px rgba(0, 212, 255, 0.1);
+  box-shadow: 
+    0 0 0 4px var(--dark-bg),
+    0 0 0 6px var(--primary-color),
+    0 20px 60px var(--shadow-color),
+    0 0 80px var(--glow-color);
 }
 
-.image-placeholder svg circle:first-child {
-  animation: rotate 20s linear infinite;
+/* Glowing corner dots */
+.about-image-glow {
+  position: absolute;
+  inset: -60px;
+  pointer-events: none;
 }
 
-@keyframes rotate {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.about-image-glow::before,
+.about-image-glow::after {
+  content: '';
+  position: absolute;
+  width: 10px; height: 10px;
+  border-radius: 50%;
+  background: var(--primary-color);
+  box-shadow: 0 0 20px var(--primary-color), 0 0 40px var(--primary-color);
 }
 
-/* Responsive */
+.about-image-glow::before {
+  top: 20%; right: 5%;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.about-image-glow::after {
+  bottom: 20%; left: 5%;
+  background: var(--secondary-color);
+  box-shadow: 0 0 20px var(--secondary-color), 0 0 40px var(--secondary-color);
+  animation: pulse 2.5s ease-in-out infinite 0.5s;
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(2); opacity: 0.4; }
+}
+
+/* =========================================
+   RESPONSIVE
+   ========================================== */
 @media (max-width: 1024px) {
-  .about-container {
-    gap: 2rem;
-  }
-
-  .image-placeholder {
-    width: 320px;
-    height: 320px;
-  }
-
-  .about-stats {
-    gap: 1rem;
-  }
-
-  .stat-item {
-    padding: 1.5rem;
-  }
-
-  .stat-item h3 {
-    font-size: 2rem;
-  }
+  .about-container { gap: 3rem; }
+  .image-placeholder { width: 300px; height: 300px; }
+  .about-stats { gap: 1rem; }
+  .stat-item { padding: 1.5rem 1rem; }
+  .stat-item h3 { font-size: 2.2rem; }
 }
 
 @media (max-width: 768px) {
-  .about {
-    padding: 8px 1rem; /* reduced top/bottom padding to pull section up */
-    min-height: auto;
-  }
-
-  .about-container {
-    grid-template-columns: 1fr;
-    gap: 0.5rem; /* tighter gap */
-  }
-
-  /* reduce space under the section title specifically for About */
-  .about .section-title {
-    margin-bottom: 0.3rem;
-  }
-
-  .about .title-underline {
-    margin-bottom: 0.4rem;
-  }
-
-  .about-content {
-    order: 1;
-  }
-
-  .about-image {
-    order: 0;
-    margin-bottom: 0.4rem; /* smaller spacing under image */
-  }
-
-  .about-text {
-    font-size: 1rem;
-    margin-top: 0.2rem;
-  }
-
-  .about-stats {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  /* increase image size as requested */
-  .image-placeholder {
-    width: 260px;
-    height: 260px;
-  }
-} 
+  .about { padding: 80px 1rem; }
+  .about-container { grid-template-columns: 1fr; gap: 2rem; }
+  .about .section-title { margin-bottom: 0.5rem; }
+  .about .title-underline { margin-bottom: 1rem; }
+  .about-content { order: 1; }
+  .about-image { order: 0; margin-bottom: 1rem; }
+  .about-text { font-size: 1rem; }
+  .about-stats { grid-template-columns: repeat(2, 1fr); }
+  .image-placeholder { width: 240px; height: 240px; }
+}
 
 @media (max-width: 480px) {
-  .about {
-    padding: 8px 0.6rem; /* reduced further for very small screens */
-  }
-
-  .about .section-title {
-    margin-bottom: 0.2rem;
-    font-size: 1.9rem;
-  }
-
-  .about .title-underline {
-    margin-bottom: 0.3rem;
-  }
-
-  .about-text {
-    font-size: 0.95rem;
-    line-height: 1.7;
-    margin-bottom: 0.9rem;
-  }
-
-  .about-stats {
-    grid-template-columns: 1fr;
-    gap: 0.5rem;
-    margin-top: 0.8rem;
-  }
-
-  .stat-item {
-    padding: 0.9rem;
-  }
-
-  .stat-item h3 {
-    font-size: 1.6rem;
-  }
-
-  .stat-item p {
-    font-size: 0.85rem;
-  }
-
-  /* increase image size but keep spacing tight */
-  .image-placeholder {
-    width: 200px;
-    height: 200px;
-  }
+  .about { padding: 60px 1rem; }
+  .about .section-title { font-size: 2rem; }
+  .about-text { font-size: 0.95rem; line-height: 1.8; margin-bottom: 1rem; }
+  .about-stats { grid-template-columns: 1fr; gap: 0.8rem; margin-top: 1.5rem; }
+  .stat-item { padding: 1rem; }
+  .stat-item h3 { font-size: 1.8rem; }
+  .stat-item p { font-size: 0.75rem; }
+  .image-placeholder { width: 200px; height: 200px; }
 }

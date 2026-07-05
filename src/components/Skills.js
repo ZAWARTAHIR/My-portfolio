@@ -51,11 +51,14 @@ const Skills = () => {
             {/* Frontend */}
             <motion.div 
               className="skill-category"
-              initial={{ opacity: 0, x: -50 }}
-              animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -50 }}
-              transition={{ duration: 0.7, delay: 0.3 }}
+              initial={{ opacity: 0, x: -50, rotateY: -20 }}
+              animate={isInView ? { opacity: 1, x: 0, rotateY: 0 } : { opacity: 0, x: -50, rotateY: -20 }}
+              transition={{ duration: 0.8, delay: 0.3 }}
+              whileHover={{ rotateX: 6, rotateY: -3 }}
+              style={{ transformStyle: 'preserve-3d' }}
             >
               <h3 className="category-title">
+                <span className="category-title-icon">⚡</span>
                 Frontend Development
               </h3>
               <div className="skills-list">
@@ -68,11 +71,14 @@ const Skills = () => {
             {/* Backend */}
             <motion.div 
               className="skill-category"
-              initial={{ opacity: 0, x: 50 }}
-              animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 50 }}
-              transition={{ duration: 0.7, delay: 0.5 }}
+              initial={{ opacity: 0, x: 50, rotateY: 20 }}
+              animate={isInView ? { opacity: 1, x: 0, rotateY: 0 } : { opacity: 0, x: 50, rotateY: 20 }}
+              transition={{ duration: 0.8, delay: 0.5 }}
+              whileHover={{ rotateX: 6, rotateY: 3 }}
+              style={{ transformStyle: 'preserve-3d' }}
             >
               <h3 className="category-title">
+                <span className="category-title-icon">🖥️</span>
                 Backend Development
               </h3>
               <div className="skills-list">

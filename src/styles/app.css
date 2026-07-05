@@ -1,23 +1,29 @@
-/* App Container */
+/* ==========================================
+   APP CONTAINER — GLOBAL OVERRIDES
+   ========================================== */
 .app {
   width: 100%;
   background-color: var(--dark-bg);
   color: var(--light-text);
   position: relative;
   overflow-x: hidden;
+  transition: background-color 0.4s ease, color 0.4s ease;
 }
 
+/* Custom Cursor Glow */
 .cursor-glow {
   position: fixed;
-  width: 30px;
-  height: 30px;
+  width: 28px;
+  height: 28px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(0, 212, 255, 0.3), rgba(124, 58, 237, 0.1));
+  background: radial-gradient(circle, var(--glow-color), var(--glow-color-secondary));
   pointer-events: none;
   z-index: 9999;
   transform: translate(-50%, -50%);
-  box-shadow: 0 0 40px rgba(0, 212, 255, 0.2);
+  box-shadow: 0 0 40px var(--glow-color), 0 0 80px var(--glow-color-secondary);
   filter: blur(1px);
+  mix-blend-mode: screen;
+  transition: width 0.2s ease, height 0.2s ease;
 }
 
 /* Hide cursor glow when hovering skills section */
@@ -25,14 +31,15 @@
   display: none !important;
 }
 
-/* Section Spacing */
 section {
   position: relative;
   z-index: 1;
 }
 
 @media (max-width: 768px) {
-  .app {
-    font-size: 14px;
-  }
+  .app { font-size: 14px; }
+}
+
+@media (max-width: 480px) {
+  .cursor-glow { display: none; }
 }
