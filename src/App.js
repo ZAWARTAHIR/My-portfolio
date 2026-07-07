@@ -3,6 +3,8 @@ import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import About from './components/About';
 import Skills from './components/Skills';
+import Build from './components/Build';
+import Faq from './components/Faq';
 import Projects from './components/Projects';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
@@ -49,7 +51,9 @@ function App() {
       >
         <Skills />
       </div>
+      <Build />
       <Projects />
+      <Faq />
       <Contact />
       <Footer />
     </div>

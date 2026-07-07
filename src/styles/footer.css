@@ -42,9 +42,15 @@
 
 .footer-top {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: 3rem;
   margin-bottom: 3rem;
+}
+
+@media (max-width: 1200px) {
+  .footer-top {
+    grid-template-columns: repeat(2, minmax(220px, 1fr));
+  }
 }
 
 .footer-section {
@@ -67,12 +73,28 @@
 }
 
 .footer-section h4 {
-  font-size: 0.85rem;
+  font-size: 0.95rem;
   color: var(--light-text);
   margin-bottom: 1rem;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 2px;
+}
+
+.footer-section h3 {
+  font-size: 1.1rem;
+  color: var(--primary-color);
+  margin-bottom: 0.7rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+}
+
+.footer-small-text {
+  font-size: 0.9rem;
+  color: var(--lighter-text);
+  line-height: 1.8;
+  margin-bottom: 1rem;
 }
 
 .footer-section p {
@@ -81,7 +103,8 @@
   line-height: 1.9;
 }
 
-.footer-section ul {
+.footer-section ul,
+.footer-services-list {
   list-style: none;
   display: flex;
   flex-direction: column;
@@ -125,31 +148,33 @@
 .social-links { display: flex; gap: 0.8rem; flex-wrap: wrap; }
 
 .social-link {
-  width: 42px;
-  height: 42px;
+  width: 44px;
+  height: 44px;
   display: flex;
   align-items: center;
   justify-content: center;
   background: var(--input-bg);
   border: 1px solid var(--border-color);
   border-radius: 12px;
-  color: var(--primary-color);
+  color: var(--lighter-text);
   text-decoration: none;
-  font-weight: 800;
-  font-size: 0.85rem;
-  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  font-family: 'Space Grotesk', sans-serif;
-  letter-spacing: 0;
-  text-transform: uppercase;
+  transition: all 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   backdrop-filter: blur(10px);
 }
 
+.social-link svg {
+  transition: transform 0.3s ease;
+}
+
 .social-link:hover {
-  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-  color: var(--btn-text-active);
+  background: var(--social-color, var(--primary-color));
+  color: #fff;
   border-color: transparent;
-  transform: translateY(-6px) rotate(-5deg) scale(1.1);
-  box-shadow: 0 15px 40px var(--glow-color);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+
+.social-link:hover svg {
+  transform: scale(1.1);
 }
 
 /* Divider */

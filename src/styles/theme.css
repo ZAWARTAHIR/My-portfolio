@@ -20,6 +20,10 @@
   
   --hero-bg-gradient: linear-gradient(135deg, var(--dark-bg) 0%, rgba(10, 14, 39, 0.5) 100%);
   --about-bg-gradient: linear-gradient(135deg, rgba(10, 14, 39, 0.5) 0%, rgba(5, 8, 16, 0.5) 100%);
+  --terminal-bg: rgba(5, 8, 16, 0.9);
+  --terminal-header-bg: rgba(255, 255, 255, 0.04);
+  --terminal-shadow: rgba(0, 0, 0, 0.5);
+  --terminal-glow: rgba(255, 255, 255, 0.04);
   
   --scrollbar-thumb: var(--primary-color);
   --scrollbar-thumb-hover: var(--secondary-color);
@@ -28,24 +32,28 @@
 
 /* 2. Light (Professional Slate) Theme */
 .theme-light {
-  --primary-color: #2563eb; /* Royal Indigo */
-  --secondary-color: #7c3aed; /* Violet */
+  --primary-color: #dc2626; /* Vivid Red */
+  --secondary-color: #9f1239; /* Deep Rose */
   --accent-color: #f43f5e; /* Rose */
   --dark-bg: #f8fafc; /* Slate 50 */
   --darker-bg: #e2e8f0; /* Slate 200 */
   --light-text: #0f172a; /* Slate 900 */
   --lighter-text: #475569; /* Slate 600 */
-  --border-color: rgba(37, 99, 235, 0.15);
+  --border-color: rgba(220, 38, 38, 0.15);
   --card-bg: #ffffff; /* Card Background */
-  --card-hover-bg: rgba(37, 99, 235, 0.06);
-  --glow-color: rgba(37, 99, 235, 0.15);
-  --glow-color-secondary: rgba(124, 58, 237, 0.1);
+  --card-hover-bg: rgba(220, 38, 38, 0.06);
+  --glow-color: rgba(220, 38, 38, 0.15);
+  --glow-color-secondary: rgba(159, 18, 57, 0.1);
   --navbar-bg: rgba(248, 250, 252, 0.85);
   --shadow-color: rgba(15, 23, 42, 0.08);
   --input-bg: #ffffff;
   
   --hero-bg-gradient: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
   --about-bg-gradient: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
+  --terminal-bg: rgba(255, 255, 255, 0.95);
+  --terminal-header-bg: rgba(15, 23, 42, 0.04);
+  --terminal-shadow: rgba(15, 23, 42, 0.12);
+  --terminal-glow: rgba(255, 255, 255, 0.85);
   
   --scrollbar-thumb: #cbd5e1; /* Slate 300 */
   --scrollbar-thumb-hover: #94a3b8; /* Slate 400 */
@@ -72,6 +80,10 @@
   
   --hero-bg-gradient: linear-gradient(135deg, var(--dark-bg) 0%, rgba(9, 9, 11, 0.8) 100%);
   --about-bg-gradient: linear-gradient(135deg, rgba(9, 9, 11, 0.8) 0%, rgba(5, 5, 7, 0.9) 100%);
+  --terminal-bg: rgba(9, 9, 11, 0.95);
+  --terminal-header-bg: rgba(252, 238, 10, 0.08);
+  --terminal-shadow: rgba(0, 0, 0, 0.7);
+  --terminal-glow: rgba(252, 238, 10, 0.2);
   
   --scrollbar-thumb: var(--primary-color);
   --scrollbar-thumb-hover: var(--secondary-color);
