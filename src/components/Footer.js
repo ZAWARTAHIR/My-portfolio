@@ -86,8 +86,6 @@ const Footer = () => {
               <li><ScrollLink to="services" spy={true} smooth={true} offset={-70} duration={500} className="footer-link">Services</ScrollLink></li>
               <li><ScrollLink to="faq" spy={true} smooth={true} offset={-70} duration={500} className="footer-link">FAQ</ScrollLink></li>
               <li><ScrollLink to="contact" spy={true} smooth={true} offset={-70} duration={500} className="footer-link">Contact</ScrollLink></li>
-
-{/* sum */}
             </ul>
           </motion.div>
 
