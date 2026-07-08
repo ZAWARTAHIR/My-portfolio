@@ -92,7 +92,7 @@ const About = () => {
             viewport={{ once: true }}
           >
             <div className="about-intro">
-              <h4 className="section-title">// ABOUT ME</h4>
+              <h4 className="section-title">{'// ABOUT ME'}</h4>
               <div className="title-underline"></div>
 
               <h1 className="big-heading">

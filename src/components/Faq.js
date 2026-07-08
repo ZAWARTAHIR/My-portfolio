@@ -56,7 +56,7 @@ const Faq = () => {
       <section className="faq-section">
       <div className="faq-grid">
         <div className="faq-panel">
-          <span className="section-label">// FAQS</span>
+          <span className="section-label">{'// FAQS'}</span>
           <h2 className="faq-title">Got <span>Questions?</span></h2>
           <p className="faq-intro">Can’t find the answer? Reach out directly — I respond fast.</p>
 
